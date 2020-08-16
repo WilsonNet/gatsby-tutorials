@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   return result.data.allRandomUser.edges.forEach(edge => {
     createPage({
-      path: `/users/#{edge.node.id}`,
+      path: `/users/${edge.node.id}`,
       component: path.resolve(`src/templates/user.js`),
       context: {
         id: edge.node.id,

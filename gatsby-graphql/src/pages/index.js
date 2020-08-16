@@ -22,24 +22,33 @@ const IndexPage = ({ data }) => (
       }}
     >
       {data.allRandomUser.edges.map(({ node }) => (
-        <li
+        <Link
           style={{
-            marginLeft: '40px',
-            marginRight: '40px',
-            width: '100%',
-            display: "flex",
-            alignItems: "center",
-            border: "2px solid rgba(0, 0, 0, 0.5)",
+            display: "block",
+            marginLeft: "40px",
+            marginRight: "40px",
             maxWidth: "300px",
+            width: "100%",
           }}
+          to={`users/${node.id}`}
+          key={node.id}
         >
-          <img
-            src={node.picture.thumbnail}
-            style={{ display: "block", marginRight: "10px" }}
-            alt={node.name.first}
-          />
-          {node.name.first} {node.name.last}
-        </li>
+          <li
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              border: "2px solid rgba(0, 0, 0, 0.5)",
+            }}
+          >
+            <img
+              src={node.picture.thumbnail}
+              style={{ display: "block", marginRight: "10px" }}
+              alt={node.name.first}
+            />
+            {node.name.first} {node.name.last}
+          </li>
+        </Link>
       ))}
     </ul>
     <Link to="/page-2/">Go to page 2</Link> <br />
