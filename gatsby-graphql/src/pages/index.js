@@ -24,7 +24,6 @@ const IndexPage = ({ data }) => (
       {data.allRandomUser.edges.map(({ node }) => (
         <li
           style={{
-            flexShrink: 0,
             marginLeft: '40px',
             marginRight: '40px',
             width: '100%',

@@ -1,7 +1,29 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require("path")
 
-// You can delete this file if you're not using it
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  const result = await graphql(
+    `
+      query Users {
+        allRandomUser {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    `
+  )
+
+  return result.data.allRandomUser.edges.forEach(edge => {
+    createPage({
+      path: `/users/#{edge.node.id}`,
+      component: path.resolve(`src/templates/user.js`),
+      context: {
+        id: edge.node.id,
+      },
+    })
+  })
+}
